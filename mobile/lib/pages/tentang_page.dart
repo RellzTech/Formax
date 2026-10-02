@@ -94,7 +94,7 @@ class TentangPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildHero(),
+            _buildHero(isDark),
             _buildAboutSection(isDark),
             _buildFeaturesSection(isDark),
             _buildValuesSection(isDark),
@@ -107,15 +107,22 @@ class TentangPage extends StatelessWidget {
   }
 
   // ── HERO ──────────────────────────────────────────────────────────────────
-  Widget _buildHero() {
+  Widget _buildHero(bool isDark) {
     return Container(
       width: double.infinity,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFF1E66D0), Color(0xFF0B76D4)],
+          colors: isDark
+              ? const [Color(0xFF1E293B), Color(0xFF0F172A)]
+              : const [Color(0xFF1E66D0), Color(0xFF0B76D4)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
+        border: isDark
+            ? const Border(
+                bottom: BorderSide(color: Color(0xFF334155), width: 1),
+              )
+            : null,
       ),
       padding: const EdgeInsets.fromLTRB(24, 40, 24, 36),
       child: Column(
@@ -126,17 +133,21 @@ class TentangPage extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
             decoration: BoxDecoration(
-              color: Colors.white.withValues(alpha: 0.18),
+              color: isDark
+                  ? const Color(0xFF334155).withValues(alpha: 0.6)
+                  : Colors.white.withValues(alpha: 0.18),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                  color: Colors.white.withValues(alpha: 0.3)),
+                  color: isDark
+                      ? const Color(0xFF475569)
+                      : Colors.white.withValues(alpha: 0.3)),
             ),
-            child: const Text(
+            child: Text(
               'Tentang Form4x',
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
-                color: Colors.white,
+                color: isDark ? const Color(0xFF93C5FD) : Colors.white,
                 letterSpacing: 0.5,
               ),
             ),

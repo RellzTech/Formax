@@ -130,11 +130,18 @@ class _CaraPakaiPageState extends State<CaraPakaiPage> {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xFF1E66D0), Color(0xFF3730A3)],
+        gradient: LinearGradient(
+          colors: isDark
+              ? const [Color(0xFF1E293B), Color(0xFF0F172A)]
+              : const [Color(0xFF1E66D0), Color(0xFF3730A3)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
+        border: isDark
+            ? const Border(
+                bottom: BorderSide(color: Color(0xFF334155), width: 1),
+              )
+            : null,
       ),
       padding: const EdgeInsets.fromLTRB(24, 48, 24, 40),
       child: Column(
